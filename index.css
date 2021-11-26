@@ -1,0 +1,29 @@
+body {
+  height: 100vh;
+  max-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+td {
+  width: 50px;
+  height: 50px;
+  position: relative;
+  z-index: -1;
+}
+
+.chess-grid {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+.figure {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+}
