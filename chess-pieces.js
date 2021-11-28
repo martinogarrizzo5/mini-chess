@@ -1,20 +1,19 @@
 class Pedone extends ChessPiece {
   img = `<img src="./images/pedone.png" alt="pedone" class="figure"></img>`;
 
-  constructor(color) {
-    super();
-    this.color = color;
+  constructor(y, x, color) {
+    super(y, x, color);
   }
 
-  move() {}
+  moves() {
+    return [[this.x, this.y - 1]];
+  }
 
-  isValidMove(x, y) {
-    let isValid = false;
-    if (x == this.x && y == this.y + 1) {
-      isValid = true;
-    }
-
-    return isValid;
+  specialMove() {
+    return [
+      [this.x - 1, this.y - 1],
+      [this.x + 1, this.y - 1],
+    ];
   }
 }
 
@@ -23,16 +22,6 @@ class King extends ChessPiece {
 
   constructor(y, x, color) {
     super(y, x, color);
-  }
-
-  isValidMove(x, y) {
-    // can't move on same cell
-    if (this.x == x && this.y == y) {
-      return false;
-    }
-    if (this.x <= x <= this.x + 1 && this.y <= y <= this.y + 1) {
-      return true;
-    }
   }
 
   moves() {

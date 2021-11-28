@@ -1,6 +1,7 @@
 const grid = [];
 const gridEl = document.querySelector(".chess-grid");
 let selectedCell = null;
+let selectedPiece = null;
 
 createGrid();
 loadGrid();
@@ -26,16 +27,41 @@ function handleCellClick(event) {
     selectedCell.deHighlight();
     if (selectedCell.piece) {
       selectedCell.piece.cleanMarkedCells(grid);
+      selectedCell.changePiece(null);
+    } else {
+      selectedPiece = null;
     }
   }
 
   const newCellEl = event.target;
-
   // update js selected cell
   selectedCell = grid[newCellEl.y][newCellEl.x];
   selectedCell.highlight();
 
-  if (selectedCell.piece) {
+  // move piece
+  if (selectedPiece) {
+    const isValidMove = selectedPiece.moves().find((move) => {
+      return move[0] === selectedCell.x;
+    });
+
+    console.log(isValidMove);
+    if (isValidMove) {
+      selectedCell.changePiece(selectedPiece);
+      selectedPiece.x = selectedCell.y;
+      selectedPiece.y = selectedCell.x;
+
+      selectedCell.piece.cleanMarkedCells(grid);
+      selectedCell.deHighlight();
+
+      selectedCell = null;
+      selectedPiece = null;
+    }
+  }
+
+  if (selectedCell && selectedCell.piece) {
+    selectedPiece = selectedCell.piece;
+  }
+  if (selectedCell && selectedCell.piece) {
     // show possible moves
     selectedCell.piece.markPossibleMoves(grid);
   }
@@ -61,5 +87,5 @@ function loadGrid() {
 }
 
 grid[1][2].changePiece(new King(1, 2, "white"));
-grid[6][0].changePiece(new King(6, 0, "white"));
+grid[6][0].changePiece(new Pedone(6, 0, "white"));
 grid[3][2].changePiece(new King(3, 2, "white"));

@@ -13,8 +13,13 @@ class GridCell {
   }
 
   changePiece(piece) {
-    this.htmlNode.innerHTML = piece.img;
-    this.piece = piece;
+    if (!piece) {
+      this.htmlNode.innerHTML = "";
+      this.piece = null;
+    } else {
+      this.htmlNode.innerHTML = piece.img;
+      this.piece = piece;
+    }
   }
 
   highlight() {
@@ -26,7 +31,7 @@ class GridCell {
   }
 
   markRed() {
-    this.htmlNode.style.backgroundColor = "red";
+    this.htmlNode.style.backgroundColor = "#ffda00";
   }
 
   cleanColor() {
