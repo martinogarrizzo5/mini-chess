@@ -2,8 +2,7 @@ class ChessPiece {
   x;
   y;
   img;
-  moves() {}
-  move() {}
+  possibleMoves() {}
   color;
 
   constructor(y, x, color) {
@@ -14,7 +13,7 @@ class ChessPiece {
 
   // mark the cells where the piece can move
   markPossibleMoves(grid) {
-    const moves = selectedCell.piece.moves();
+    const moves = selectedCell.piece.possibleMoves(grid);
     for (let move of moves) {
       if (this.isInGridBounds(move) == true) {
         let cell = grid[move[1]][move[0]];
@@ -25,7 +24,7 @@ class ChessPiece {
 
   // remove cells' highlight where the piece can move
   cleanMarkedCells(grid) {
-    let moves = this.moves();
+    let moves = this.possibleMoves(grid);
     for (let move of moves) {
       if (this.isInGridBounds(move)) {
         let cell = grid[move[1]][move[0]];

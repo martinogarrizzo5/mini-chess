@@ -10,6 +10,7 @@ createGrid();
 loadGrid();
 console.log(grid);
 
-grid[1][2].changePiece(new King(1, 2, "white"));
+// N.B! x and y cords are reversed
+grid[1][1].changePiece(new King(1, 1, "black"));
 grid[6][0].changePiece(new Pedone(6, 0, "white"));
 grid[3][2].changePiece(new King(3, 2, "white"));

@@ -4,7 +4,7 @@ function createGrid() {
   for (let i = 0; i < 8; i++) {
     const row = [];
     for (let j = 0; j < 8; j++) {
-      const cell = new GridCell(j, i, null, isLastWhite ? "white" : "black");
+      const cell = new GridCell(j, i, null, isLastWhite ? "white" : "#643528");
       row.push(cell);
       isLastWhite = !isLastWhite;
     }
@@ -40,30 +40,36 @@ function handleCellClick(event) {
   // highlight selected cell
   selectedCell.highlight();
 
-  if (selectedCell && selectedCell.piece) {
-    // show possible moves
-    selectedCell.piece.markPossibleMoves(grid);
-  }
-
   // move piece if it was on the last selected cell
   if (lastSelectedCell && lastSelectedCell.piece) {
-    isValidMove = lastSelectedCell.piece.moves().find((move) => {
+    isValidMove = lastSelectedCell.piece.possibleMoves(grid).find((move) => {
       return move[0] === selectedCell.x && move[1] === selectedCell.y;
     });
 
+    // check if the move is a valid one of the chess piece
     if (isValidMove) {
       // move on new selected cell
+      lastSelectedCell.clearCell(grid);
       selectedCell.changePiece(lastSelectedCell.piece);
 
       // clean last selected cell
-      lastSelectedCell.clearCell(grid);
       lastSelectedCell.changePiece(null);
 
+      // update piece's cords reference
       selectedCell.piece.changeCords(selectedCell.y, selectedCell.x);
 
       // turn to starting point
       selectedCell = null;
       lastSelectedCell = null;
+    } else {
+      // check if the user is trying to select another chess piece
+      if (selectedCell && selectedCell.piece) {
+        selectedCell.piece.markPossibleMoves(grid);
+      }
+    }
+  } else {
+    if (selectedCell && selectedCell.piece) {
+      selectedCell.piece.markPossibleMoves(grid);
     }
   }
 }
