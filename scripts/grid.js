@@ -1,19 +1,28 @@
 // create js grid
 function createGrid() {
   let isLastWhite = false;
+  let brown = "#643528";
+  let cellColor;
+
   for (let i = 0; i < 8; i++) {
     const row = [];
     for (let j = 0; j < 8; j++) {
-      const cell = new GridCell(j, i, null, isLastWhite ? "white" : "#643528");
+      cellColor = isLastWhite ? "white" : brown;
+
+      const cell = new GridCell(j, i, null, cellColor);
       row.push(cell);
+
       isLastWhite = !isLastWhite;
     }
 
     grid.push(row);
+
+    // start new line with opposite color
     isLastWhite = !isLastWhite;
   }
 }
 
+// UI interaction
 function handleCellClick(event) {
   // update last selected cell
   lastSelectedCell = selectedCell;
@@ -25,8 +34,8 @@ function handleCellClick(event) {
     if (selectedCell.piece) {
       selectedCell.piece.cleanMarkedCells(grid);
     }
-    selectedCell.deHighlight();
     // turn to starting position
+    selectedCell.deHighlight();
     selectedCell = null;
     lastSelectedCell = null;
     return;
@@ -42,17 +51,16 @@ function handleCellClick(event) {
 
   // move piece if it was on the last selected cell
   if (lastSelectedCell && lastSelectedCell.piece) {
-    isValidMove = lastSelectedCell.piece.possibleMoves(grid).find((move) => {
+    isValidMove = lastSelectedCell.piece.moves(grid).find((move) => {
       return move[0] === selectedCell.x && move[1] === selectedCell.y;
     });
 
     // check if the move is a valid one of the chess piece
     if (isValidMove) {
-      // move on new selected cell
-      lastSelectedCell.clearCell(grid);
-      selectedCell.changePiece(lastSelectedCell.piece);
-
       // clean last selected cell
+      lastSelectedCell.clearCell(grid);
+      // move on new selected cell
+      selectedCell.changePiece(lastSelectedCell.piece);
       lastSelectedCell.changePiece(null);
 
       // update piece's cords reference
@@ -68,6 +76,7 @@ function handleCellClick(event) {
       }
     }
   } else {
+    // check if the user is trying to select another chess piece
     if (selectedCell && selectedCell.piece) {
       selectedCell.piece.markPossibleMoves(grid);
     }
@@ -75,7 +84,7 @@ function handleCellClick(event) {
 }
 
 // load grid in the DOM adding reference to the js grid
-function loadGrid() {
+function loadDOMGrid() {
   gridEl.innerHTML = "";
   for (let y = 0; y < grid.length; y++) {
     const row = document.createElement("tr");

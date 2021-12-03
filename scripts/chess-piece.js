@@ -2,8 +2,10 @@ class ChessPiece {
   x;
   y;
   img;
-  possibleMoves() {}
   color;
+  possibleMoves(grid) {
+    return [];
+  }
 
   constructor(y, x, color) {
     this.x = x;
@@ -13,23 +15,20 @@ class ChessPiece {
 
   // mark the cells where the piece can move
   markPossibleMoves(grid) {
-    const moves = selectedCell.piece.possibleMoves(grid);
+    let moves = selectedCell.piece.moves(grid);
+
     for (let move of moves) {
-      if (this.isInGridBounds(move) == true) {
-        let cell = grid[move[1]][move[0]];
-        cell.markRed();
-      }
+      let cell = grid[move[1]][move[0]];
+      cell.markRed();
     }
   }
 
   // remove cells' highlight where the piece can move
   cleanMarkedCells(grid) {
-    let moves = this.possibleMoves(grid);
+    let moves = this.moves(grid);
     for (let move of moves) {
-      if (this.isInGridBounds(move)) {
-        let cell = grid[move[1]][move[0]];
-        cell.cleanColor();
-      }
+      let cell = grid[move[1]][move[0]];
+      cell.cleanColor();
     }
   }
 
@@ -43,8 +42,33 @@ class ChessPiece {
     return isValid;
   }
 
+  // updates cords
   changeCords(y, x) {
     this.y = y;
     this.x = x;
+  }
+
+  // check if the move is valid or on enemy piece
+  checkValidMove(move) {
+    let isValid = false;
+
+    if (this.isInGridBounds(move)) {
+      if (
+        !grid[move[1]][move[0]].piece ||
+        (grid[move[1]][move[0]].piece &&
+          grid[move[1]][move[0]].piece.color != this.color)
+      ) {
+        isValid = true;
+      }
+    }
+
+    return isValid;
+  }
+
+  // filter the possible moves taking only the valid ones
+  moves(grid) {
+    let moves = this.possibleMoves(grid);
+    moves = moves.filter((move) => this.checkValidMove(move));
+    return moves;
   }
 }
