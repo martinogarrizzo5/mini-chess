@@ -41,7 +41,7 @@ body {
 }
 
 .level {
-  font-size: 2.5rem;
+  font-size: 2.3rem;
   margin-bottom: 1.3rem;
 }
 
@@ -105,4 +105,46 @@ td {
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+}
+
+.dialog {
+  position: absolute;
+  display: block;
+  z-index: 100;
+  width: 60rem;
+  background-color: white;
+  border-radius: 2rem;
+  padding: 3rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.backdrop {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100vw;
+  height: 100vh;
+}
+
+.finish-result {
+  font-size: 4rem;
+  font-family: "Suez One", serif;
+  letter-spacing: 1px;
+}
+
+.finish-description {
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+}
+
+.finish-button {
+  outline: none;
+  border: none;
+  padding: 1.5rem 2rem;
+  background-color: rgb(170, 43, 26);
+  color: white;
+  font-size: 1.8rem;
+  cursor: pointer;
 }

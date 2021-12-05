@@ -1,26 +1,24 @@
-const grid = [];
+let grid = [];
 const gridEl = document.querySelector(".chess-grid");
+const remainingMovesEl = document.querySelector(".remaining-moves");
+const levelEl = document.querySelector(".level");
+
+let level = 1;
+let isLevelWon = false;
+let isLevelLost = false;
+let remainingMoves = 0; // remaining moves to checkmate enemy king
 
 let lastSelectedCell = null; // last move made
 let selectedCell = null; // actual selected cell
-// let selectedPiece = null; // piece on selected cell
-let isValidMove = true; // check if move is valid
+
+let blackKing; // enemy king
+let alleyPieces = [];
 
 createGrid();
 loadDOMGrid();
-console.log(grid);
+// console.log(grid);
 
-// N.B! x and y cords are reversed
+// TODO: show dialog when user win or lose the game
 
-// LEVEL 1
-// TODO: create container for the reference of pieces of each color
-
-// black pieces
-grid[0][0].changePiece(new King(1, 1, "black"));
-grid[1][0].changePiece(new Pawn(1, 1, "black"));
-grid[1][1].changePiece(new Pawn(1, 1, "black"));
-grid[1][2].changePiece(new Pawn(1, 2, "black"));
-
-// white pieces
-grid[4][5].changePiece(new Queen(4, 5, "white"));
-grid[6][3].changePiece(new Knigth(6, 3, "white"));
+// TODO: create array of levels
+level1();
