@@ -12,6 +12,7 @@ class GridCell {
     this.color = color;
   }
 
+  // substitute the piece of this cell with a given one
   changePiece(piece) {
     if (!piece) {
       this.htmlNode.innerHTML = "";
@@ -22,22 +23,28 @@ class GridCell {
     }
   }
 
+  // highlight the cell
   highlight() {
-    this.htmlNode.style.backgroundColor = "yellow";
+    const highlightColor = "yellow";
+    this.htmlNode.style.backgroundColor = highlightColor;
   }
 
+  // remove highlighting of the cell
   deHighlight() {
     this.htmlNode.style.backgroundColor = this.color;
   }
 
+  // mark the cell as possible move
   markRed() {
     this.htmlNode.style.backgroundColor = "#ffda00";
   }
 
+  // put color of the cell to the original one
   cleanColor() {
     this.htmlNode.style.backgroundColor = this.color;
   }
 
+  // clean highlight of this cell and signature of marked cells around
   clearCell(grid) {
     if (this.piece) {
       this.piece.cleanMarkedCells(grid);

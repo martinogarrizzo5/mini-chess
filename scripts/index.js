@@ -11,7 +11,16 @@ loadDOMGrid();
 console.log(grid);
 
 // N.B! x and y cords are reversed
-grid[1][1].changePiece(new King(1, 1, "black"));
-grid[6][0].changePiece(new Pedone(6, 0, "white"));
-grid[3][2].changePiece(new King(3, 2, "white"));
-grid[4][5].changePiece(new Bishop(4, 5, "white"));
+
+// LEVEL 1
+// TODO: create container for the reference of pieces of each color
+
+// black pieces
+grid[0][0].changePiece(new King(1, 1, "black"));
+grid[1][0].changePiece(new Pawn(1, 1, "black"));
+grid[1][1].changePiece(new Pawn(1, 1, "black"));
+grid[1][2].changePiece(new Pawn(1, 2, "black"));
+
+// white pieces
+grid[4][5].changePiece(new Queen(4, 5, "white"));
+grid[6][3].changePiece(new Knigth(6, 3, "white"));

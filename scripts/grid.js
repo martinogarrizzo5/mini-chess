@@ -22,6 +22,8 @@ function createGrid() {
   }
 }
 
+// TODO: compute checkmate each turn
+
 // UI interaction
 function handleCellClick(event) {
   // update last selected cell
@@ -72,13 +74,25 @@ function handleCellClick(event) {
     } else {
       // check if the user is trying to select another chess piece
       if (selectedCell && selectedCell.piece) {
-        selectedCell.piece.markPossibleMoves(grid);
+        // don't do anything if the clicked cell has an enemy piece
+        if (selectedCell.piece.color === "black") {
+          selectedCell.clearCell(grid);
+          selectedCell = null;
+        } else {
+          selectedCell.piece.markPossibleMoves(grid);
+        }
       }
     }
   } else {
     // check if the user is trying to select another chess piece
     if (selectedCell && selectedCell.piece) {
-      selectedCell.piece.markPossibleMoves(grid);
+      // don't do anything if the clicked cell has an enemy piece
+      if (selectedCell.piece.color == "black") {
+        selectedCell.clearCell(grid);
+        selectedCell = null;
+      } else {
+        selectedCell.piece.markPossibleMoves(grid);
+      }
     }
   }
 }
