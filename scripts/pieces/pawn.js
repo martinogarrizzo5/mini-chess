@@ -1,7 +1,7 @@
 class Pawn extends ChessPiece {
   constructor(y, x, color) {
     super(y, x, color);
-    this.img = `<img src="../images/${color}-pawn.png" alt="pedone" class="figure"></img>`;
+    this.img = `<img src="./images/${color}-pawn.png" alt="pedone" class="figure"></img>`;
   }
 
   possibleMoves(grid) {
