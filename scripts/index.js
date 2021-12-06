@@ -19,5 +19,5 @@ loadDOMGrid();
 console.log(grid);
 
 // TODO: ADD INTRODUCTORY SCREEN TO EXPLAIN THE GOAL OF THE GAME
-let levels = [level1, level2, level3];
-levels[0]();
+let levels = [level1, level2, level3, level4];
+levels[level - 1]();
