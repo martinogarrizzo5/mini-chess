@@ -4,6 +4,8 @@
 
 In Mini Chess You will face with a lot of situations to the test your skills in checkmating the enemy king
 
+https://martinogarrizzo5.github.io/mini-chess/
+
 ![Snapshot of the game](./readme-image.jpg)
 
 ## How to Use The Code

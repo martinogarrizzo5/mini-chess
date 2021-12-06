@@ -90,14 +90,14 @@ function handleCellClick(event) {
   isLevelWon = blackKing.computeCheckMate(alleyPieces);
   if (isLevelWon) {
     console.log("Level Won" + isLevelWon);
-    showVictoryDialog();
+    showLevelWonDialog();
   } else if (remainingMoves <= 0) {
     console.log("Level Lost " + isLevelLost);
     showDefeatDialog();
   }
 }
 
-function showVictoryDialog() {
+function showLevelWonDialog() {
   const backdrop = document.createElement("div");
   backdrop.classList.add("backdrop");
 
@@ -131,6 +131,23 @@ function showDefeatDialog() {
   body.appendChild(backdrop);
 }
 
+function showGameWonDialog() {
+  const backdrop = document.createElement("div");
+  backdrop.classList.add("backdrop");
+
+  const dialog = document.createElement("div");
+  dialog.classList.add("dialog");
+  dialog.innerHTML = `
+    <h2 class="finish-result">You are a real chess master!</h2>
+    <p class="finish-description">You successfully finished all levels...but many other will come in the future</p>
+    <button class="finish-button" onclick="resetGame()">Restart Game<button>
+    `;
+
+  const body = document.querySelector("body");
+  body.appendChild(dialog);
+  body.appendChild(backdrop);
+}
+
 // if game over then reset the game to initial point
 function resetGame() {
   isLevelWon = false;
@@ -148,7 +165,12 @@ function goToNextLevel() {
   removeDialog();
   resetGrid();
   level++;
-  levels[level - 1]();
+  if (level > levels.length) {
+    showGameWonDialog();
+  } else {
+    levels[level - 1]();
+    levelEl.innerText = "Level " + level;
+  }
 }
 
 // remove dialog from screen

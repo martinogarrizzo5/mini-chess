@@ -11,18 +11,19 @@ html {
 }
 
 body {
+  position: relative;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   font-family: "Inter", sans-serif;
-  padding: 3rem;
 
   /* background-color: #f9e974; */
   background-image: url(./images/background.svg);
   background-size: cover;
   background-repeat: no-repeat;
+  padding-top: 2rem;
 }
 
 .brand {
@@ -30,7 +31,7 @@ body {
   font-family: "Suez One", serif;
   letter-spacing: 1px;
   color: rgb(170, 43, 26);
-  margin-bottom: 2rem;
+  margin: auto 0 2rem 0;
 }
 
 .game-info {
@@ -60,6 +61,7 @@ td {
 .chess-grid {
   border-collapse: collapse;
   position: relative;
+  margin-bottom: 2rem;
 }
 
 .chess-grid::after,
@@ -94,7 +96,7 @@ td {
   left: 50%;
   transform: translate(-50%, -50%);
   width: auto;
-  height: 50px;
+  height: 5rem;
   pointer-events: none;
 }
 
@@ -119,13 +121,17 @@ td {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
 }
 
 .backdrop {
+  top: 0;
+  left: 0;
   position: absolute;
   background-color: rgba(0, 0, 0, 0.5);
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
 }
 
 .finish-result {
@@ -147,4 +153,44 @@ td {
   color: white;
   font-size: 1.8rem;
   cursor: pointer;
+}
+
+.footer {
+  margin-top: auto;
+  font-size: 1.6rem;
+  margin: auto 0 1rem 0;
+}
+
+/* 700px */
+@media (max-width: 43.75em) {
+  td {
+    width: 6rem;
+    height: 6rem;
+  }
+
+  .game-info {
+    width: 48rem;
+  }
+}
+
+/* 550px */
+@media (max-width: 34.375em) {
+  td {
+    width: 4.5rem;
+    height: 4.5rem;
+  }
+
+  .game-info {
+    width: 36rem;
+  }
+
+  .figure {
+    height: 4rem;
+  }
+}
+
+@media screen {
+  html {
+    font-size: 55%;
+  }
 }
