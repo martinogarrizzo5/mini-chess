@@ -1,5 +1,15 @@
 // N.B! x and y cords are reversed
 
+/* 
+to create a level modify in the function the following properties:
+  - remainining moves
+  - html node of remaining moves
+  - black pieces
+  - white pieces
+  - put reference of all pieces on the grid 
+  - put reference of white pieces in alleyPieces 
+*/
+
 // level 1
 function level1() {
   remainingMoves = 10;
@@ -24,5 +34,59 @@ function level1() {
   alleyPieces.push(queen, knight1);
 
   grid[4][5].changePiece(queen);
+  grid[6][3].changePiece(knight1);
+}
+
+// level 2
+function level2() {
+  remainingMoves = 1;
+  remainingMovesEl.innerHTML = "Remaining Moves: " + remainingMoves;
+
+  // black pieces
+  blackKing = new King(0, 7, "black");
+
+  let pawn1 = new Pawn(1, 7, "black");
+  let pawn2 = new Pawn(1, 6, "black");
+  let pawn3 = new Pawn(1, 5, "black");
+
+  grid[0][7].changePiece(blackKing);
+  grid[1][7].changePiece(pawn1);
+  grid[1][6].changePiece(pawn2);
+  grid[1][5].changePiece(pawn3);
+
+  // white pieces
+  let queen = new Queen(4, 5, "white");
+  let knight1 = new Knight(6, 3, "white");
+
+  alleyPieces.push(queen, knight1);
+
+  grid[4][5].changePiece(queen);
+  grid[6][3].changePiece(knight1);
+}
+
+// level 2
+function level3() {
+  remainingMoves = 2;
+  remainingMovesEl.innerHTML = "Remaining Moves: " + remainingMoves;
+
+  // black pieces
+  blackKing = new King(0, 7, "black");
+
+  let pawn1 = new Pawn(1, 7, "black");
+  let pawn2 = new Pawn(1, 6, "black");
+  let pawn3 = new Pawn(1, 5, "black");
+
+  grid[0][7].changePiece(blackKing);
+  grid[1][7].changePiece(pawn1);
+  grid[1][6].changePiece(pawn2);
+  grid[1][5].changePiece(pawn3);
+
+  // white pieces
+  let rook = new Rook(4, 5, "white");
+  let knight1 = new Knight(6, 3, "white");
+
+  alleyPieces.push(rook, knight1);
+
+  grid[4][5].changePiece(rook);
   grid[6][3].changePiece(knight1);
 }

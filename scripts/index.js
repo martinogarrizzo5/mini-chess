@@ -16,9 +16,8 @@ let alleyPieces = [];
 
 createGrid();
 loadDOMGrid();
-// console.log(grid);
+console.log(grid);
 
-// TODO: show dialog when user win or lose the game
-
-// TODO: create array of levels
-level1();
+// TODO: ADD INTRODUCTORY SCREEN TO EXPLAIN THE GOAL OF THE GAME
+let levels = [level1, level2, level3];
+levels[0]();

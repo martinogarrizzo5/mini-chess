@@ -25,6 +25,8 @@ In Mini Chess You will face with a lot of situations to the test your skills in 
 <script type="text/javascript" src="./scripts/pieces/pawn.js"></script>
 <script type="text/javascript" src="./scripts/pieces/rook.js"></script>
 <script type="text/javascript" src="./scripts/grid.js"></script>
+<script type="text/javascript" src="./scripts/levels.js"></script>
+<script type="text/javascript" src="./scripts/ui.js"></script>
 <script type="text/javascript" src="./scripts/index.js"></script>
 ```
 

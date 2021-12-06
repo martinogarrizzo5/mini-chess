@@ -73,7 +73,7 @@ td {
 }
 
 .chess-grid::after {
-  width: 100%;
+  width: calc(100% - 1px);
   height: 12px;
   bottom: -12px;
   left: 5px;
@@ -81,7 +81,7 @@ td {
 }
 
 .chess-grid::before {
-  height: 101%;
+  height: calc(101% - 1px);
   right: -8px;
   top: 3px;
   width: 8px;

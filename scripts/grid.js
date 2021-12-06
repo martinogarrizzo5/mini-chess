@@ -43,13 +43,16 @@ function loadDOMGrid() {
 
 // re-create the grid when the level finishes
 function resetGrid() {
+  // bring back all variables to default
+  isLevelWon = false;
+  isLevelLost = false;
   lastSelectedCell = null;
   selectedCell = null;
 
   grid = [];
   gridEl.innerHTML = "";
   blackKing = null;
-
+  alleyPieces = [];
   createGrid();
   loadDOMGrid();
 }

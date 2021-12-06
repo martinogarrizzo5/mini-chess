@@ -3,17 +3,15 @@ function consumeMove() {
   remainingMoves--;
   remainingMovesEl.innerHTML = "Remaining Moves: " + remainingMoves;
 
-  if (remainingMoves <= 0) {
+  // TODO: solve possible problem when user win with the last move
+  if (remainingMoves < 0) {
     console.log("You lost");
     isLevelLost = true;
     isLevelWon = false;
 
-    // TODO: SHOW DEFEAT DIALOG FROM HERE
     showDefeatDialog();
   }
 }
-
-// TODO: compute checkmate each turn
 
 // UI interaction
 function handleCellClick(event) {
@@ -88,8 +86,15 @@ function handleCellClick(event) {
     }
   }
 
+  // show dialog to go to the next level if the player win
   isLevelWon = blackKing.computeCheckMate(alleyPieces);
-  console.log(isLevelWon);
+  if (isLevelWon) {
+    console.log("Level Won" + isLevelWon);
+    showVictoryDialog();
+  } else if (remainingMoves <= 0) {
+    console.log("Level Lost " + isLevelLost);
+    showDefeatDialog();
+  }
 }
 
 function showVictoryDialog() {
@@ -101,7 +106,7 @@ function showVictoryDialog() {
   dialog.innerHTML = `
     <h2 class="finish-result">Victory...For Now!</h2>
     <p class="finish-description">You won but there are other levels to face</p>
-    <button class="finish-button" onclick="resetGame()">Next Level<button>
+    <button class="finish-button" onclick="goToNextLevel()">Next Level<button>
     `;
 
   const body = document.querySelector("body");
@@ -126,12 +131,29 @@ function showDefeatDialog() {
   body.appendChild(backdrop);
 }
 
+// if game over then reset the game to initial point
 function resetGame() {
-  const body = document.querySelector("body");
-  body.querySelector(".dialog").remove();
-  body.querySelector(".backdrop").remove();
+  isLevelWon = false;
+  isLevelLost = false;
+
+  removeDialog();
   levelEl.innerText = "Level 1";
   level = 1;
   resetGrid();
   level1();
+}
+
+// if player win then go to next level
+function goToNextLevel() {
+  removeDialog();
+  resetGrid();
+  level++;
+  levels[level - 1]();
+}
+
+// remove dialog from screen
+function removeDialog() {
+  const body = document.querySelector("body");
+  body.querySelector(".dialog").remove();
+  body.querySelector(".backdrop").remove();
 }
