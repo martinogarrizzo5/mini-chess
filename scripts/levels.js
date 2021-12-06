@@ -124,3 +124,37 @@ function level4() {
   grid[4][5].changePiece(rook1);
   grid[6][1].changePiece(rook2);
 }
+
+// level 5
+function level5() {
+  remainingMoves = 3;
+  remainingMovesEl.innerHTML = "Remaining Moves: " + remainingMoves;
+
+  // black pieces
+  blackKing = new King(2, 7, "black");
+
+  let pawn1 = new Pawn(3, 7, "black");
+  let pawn2 = new Pawn(3, 6, "black");
+  let pawn3 = new Pawn(3, 5, "black");
+
+  let pawn4 = new Pawn(2, 3, "black");
+  let pawn5 = new Pawn(3, 2, "black");
+  let pawn6 = new Pawn(3, 5, "black");
+
+  grid[2][7].changePiece(blackKing);
+  grid[3][7].changePiece(pawn1);
+  grid[3][6].changePiece(pawn2);
+  grid[3][5].changePiece(pawn3);
+  grid[2][3].changePiece(pawn4);
+  grid[3][2].changePiece(pawn5);
+  grid[3][5].changePiece(pawn6);
+
+  // white pieces
+  let rook1 = new Rook(4, 5, "white");
+  let rook2 = new Rook(6, 1, "white");
+
+  alleyPieces.push(rook1, rook2);
+
+  grid[4][5].changePiece(rook1);
+  grid[6][1].changePiece(rook2);
+}

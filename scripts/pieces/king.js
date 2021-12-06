@@ -32,7 +32,7 @@ class King extends ChessPiece {
 
     console.log(kingPositions);
     for (let enemy of enemyPieces) {
-      // TODO: solve possible bug with pawns
+      // TODO: solve bug with movement on diagonals and axis
       const moves = enemy.possibleMoves(grid);
       for (let move of moves) {
         if (
