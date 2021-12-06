@@ -171,6 +171,22 @@ td {
   .game-info {
     width: 48rem;
   }
+
+  .dialog {
+    width: 90%;
+  }
+
+  .finish-result {
+    font-size: 3rem;
+  }
+
+  .finish-description {
+    font-size: 1.6rem;
+  }
+
+  .finish-button {
+    padding: 1.3rem 1.8rem;
+  }
 }
 
 /* 550px */
