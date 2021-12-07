@@ -68,10 +68,13 @@ class ChessPiece {
   // filter the possible moves taking only the valid ones
   moves(grid) {
     let moves = this.possibleMoves(grid);
-    moves = moves.filter((move) => this.checkValidMove(move));
+    moves = moves.filter(
+      (move) => this.checkValidMove(move) && !this.isKingOnPos(grid, move)
+    );
     return moves;
   }
 
+  // TODO: FIX don't stop when king is seen
   // enumerate all moves on diagonals and stop if there are any pieces
   diagonalMovement(grid) {
     const moves = [];
@@ -206,5 +209,17 @@ class ChessPiece {
     }
 
     return moves;
+  }
+
+  // TODO: fix diagonal and axis movement to do correct checkmate
+  // TODO: add methods for possible diagonals and possible axis
+  // (see level 6)
+  isKingOnPos(grid, pos) {
+    let isValid = false;
+    if (grid[pos[1]][pos[0]].piece instanceof King) {
+      isValid = true;
+    }
+
+    return isValid;
   }
 }

@@ -2,8 +2,6 @@
 function consumeMove() {
   remainingMoves--;
   remainingMovesEl.innerHTML = "Remaining Moves: " + remainingMoves;
-
-  // TODO: solve possible problem when user win with the last move
   if (remainingMoves < 0) {
     console.log("You lost");
     isLevelLost = true;

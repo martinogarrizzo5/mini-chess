@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 # build js
 if ! npx uglifyjs ./scripts/chess-piece.js ./scripts/**/*.js ./scripts/*.js -o ./index.js
