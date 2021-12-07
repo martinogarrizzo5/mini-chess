@@ -3,7 +3,7 @@ const gridEl = document.querySelector(".chess-grid");
 const remainingMovesEl = document.querySelector(".remaining-moves");
 const levelEl = document.querySelector(".level");
 
-let level = 6;
+let level = 1;
 let isLevelWon = false;
 let isLevelLost = false;
 let remainingMoves = 0; // remaining moves to checkmate enemy king

@@ -121,7 +121,7 @@ function showDefeatDialog() {
   dialog.innerHTML = `
   <h2 class="finish-result">Loser!</h2>
   <p class="finish-description">It seems you are not as smart as I thought</p>
-  <button class="finish-button" onclick="resetGame()">Try Again<button>
+  <button class="finish-button" onclick="resetLevel()">Try Again<button>
   `;
 
   const body = document.querySelector("body");
@@ -146,7 +146,7 @@ function showGameWonDialog() {
   body.appendChild(backdrop);
 }
 
-// if game over then reset the game to initial point
+// reset the game to initial point
 function resetGame() {
   isLevelWon = false;
   isLevelLost = false;
@@ -156,6 +156,15 @@ function resetGame() {
   level = 1;
   resetGrid();
   level1();
+}
+
+// reset level
+function resetLevel() {
+  isLevelWon = false;
+  isLevelLost = false;
+  removeDialog();
+  resetGrid();
+  levels[level - 1]();
 }
 
 // if player win then go to next level

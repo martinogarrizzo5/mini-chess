@@ -4,7 +4,16 @@ class Bishop extends ChessPiece {
     this.img = `<img src="./images/${color}-bishop.png" alt="king" class="figure"></img>`;
   }
 
+  // checkmate moves
   possibleMoves(grid) {
+    const moves = [];
+    moves.push(...this.possibleDiagonalMovement(grid));
+
+    return moves;
+  }
+
+  // real moves
+  moves() {
     const moves = [];
     moves.push(...this.diagonalMovement(grid));
 

@@ -74,7 +74,106 @@ class ChessPiece {
     return moves;
   }
 
-  // TODO: FIX don't stop when king is seen
+  // use this to calc checkmate for diagonal movement
+  possibleDiagonalMovement(grid) {
+    let moves = [];
+
+    // bottom right diagonal
+    let i = this.y + 1;
+    let j = this.x + 1;
+    let isKingFound = false;
+
+    while (this.isInGridBounds([j, i])) {
+      if (isKingFound && grid[i][j].piece) {
+        break;
+      } else if (this.isKingOnPos(grid, [j, i])) {
+        isKingFound = true;
+        moves.push([j, i]);
+      } else if (grid[i][j].piece) {
+        moves.push([j, i]);
+        break;
+      } else {
+        moves.push([j, i]);
+      }
+
+      i++;
+      j++;
+    }
+
+    isKingFound = false;
+
+    // top right diagonal
+    i = this.y - 1;
+    j = this.x + 1;
+
+    while (this.isInGridBounds([j, i])) {
+      if (isKingFound && grid[i][j].piece) {
+        break;
+      } else if (this.isKingOnPos(grid, [j, i])) {
+        isKingFound = true;
+        moves.push([j, i]);
+      } else if (grid[i][j].piece) {
+        moves.push([j, i]);
+        break;
+      } else {
+        moves.push([j, i]);
+      }
+
+      i--;
+      j++;
+    }
+
+    isKingFound = false;
+
+    // bottom left diagonal
+    i = this.y + 1;
+    j = this.x - 1;
+
+    while (this.isInGridBounds([j, i])) {
+      if (isKingFound && grid[i][j].piece) {
+        break;
+      } else if (this.isKingOnPos(grid, [j, i])) {
+        isKingFound = true;
+        moves.push([j, i]);
+      } else if (grid[i][j].piece) {
+        moves.push([j, i]);
+        break;
+      } else {
+        moves.push([j, i]);
+      }
+
+      i++;
+      j--;
+    }
+
+    isKingFound = false;
+
+    // top left diagonal
+    i = this.y - 1;
+    j = this.x - 1;
+
+    while (this.isInGridBounds([j, i])) {
+      if (isKingFound && grid[i][j].piece) {
+        break;
+      } else if (this.isKingOnPos(grid, [j, i])) {
+        isKingFound = true;
+        moves.push([j, i]);
+      } else if (grid[i][j].piece) {
+        moves.push([j, i]);
+        break;
+      } else {
+        moves.push([j, i]);
+      }
+
+      i--;
+      j--;
+    }
+
+    isKingFound = false;
+
+    return moves;
+  }
+
   // enumerate all moves on diagonals and stop if there are any pieces
   diagonalMovement(grid) {
     const moves = [];
@@ -82,10 +181,15 @@ class ChessPiece {
     let i = this.y + 1;
     let j = this.x + 1;
 
-    while (this.isInGridBounds([j, i]) && this.checkValidMove([j, i])) {
+    while (
+      this.isInGridBounds([j, i]) &&
+      this.checkValidMove([j, i]) &&
+      !this.isKingOnPos(grid, [j, i])
+    ) {
       moves.push([j, i]);
 
       // don't add other moves in this direction if there is an enemy piece
+
       if (grid[i][j].piece && grid[i][j].piece.color != this.color) {
         break;
       }
@@ -98,7 +202,11 @@ class ChessPiece {
     i = this.y + 1;
     j = this.x - 1;
 
-    while (this.isInGridBounds([j, i]) && this.checkValidMove([j, i])) {
+    while (
+      this.isInGridBounds([j, i]) &&
+      this.checkValidMove([j, i]) &&
+      !this.isKingOnPos(grid, [j, i])
+    ) {
       moves.push([j, i]);
 
       // don't add other moves in this direction if there is an enemy piece
@@ -114,7 +222,11 @@ class ChessPiece {
     i = this.y - 1;
     j = this.x + 1;
 
-    while (this.isInGridBounds([j, i]) && this.checkValidMove([j, i])) {
+    while (
+      this.isInGridBounds([j, i]) &&
+      this.checkValidMove([j, i]) &&
+      !this.isKingOnPos(grid, [j, i])
+    ) {
       moves.push([j, i]);
 
       // don't add other moves in this direction if there is an enemy piece
@@ -130,7 +242,11 @@ class ChessPiece {
     i = this.y - 1;
     j = this.x - 1;
 
-    while (this.isInGridBounds([j, i]) && this.checkValidMove([j, i])) {
+    while (
+      this.isInGridBounds([j, i]) &&
+      this.checkValidMove([j, i]) &&
+      !this.isKingOnPos(grid, [j, i])
+    ) {
       moves.push([j, i]);
 
       // don't add other moves in this direction if there is an enemy piece
@@ -145,6 +261,96 @@ class ChessPiece {
     return moves;
   }
 
+  possibleAxisMovement(grid) {
+    const moves = [];
+
+    // positive y axis
+    let i = this.y - 1;
+    let j = this.x;
+    let isKingFound = false;
+
+    while (this.isInGridBounds([j, i])) {
+      if (isKingFound && grid[i][j].piece) {
+        break;
+      } else if (this.isKingOnPos(grid, [j, i])) {
+        isKingFound = true;
+        moves.push([j, i]);
+      } else if (grid[i][j].piece) {
+        moves.push([j, i]);
+        break;
+      } else {
+        moves.push([j, i]);
+      }
+
+      i--;
+    }
+
+    // negative y axis
+    i = this.y + 1;
+    j = this.x;
+    isKingFound = false;
+
+    while (this.isInGridBounds([j, i])) {
+      if (isKingFound && grid[i][j].piece) {
+        break;
+      } else if (this.isKingOnPos(grid, [j, i])) {
+        isKingFound = true;
+        moves.push([j, i]);
+      } else if (grid[i][j].piece) {
+        moves.push([j, i]);
+        break;
+      } else {
+        moves.push([j, i]);
+      }
+
+      i++;
+    }
+
+    // negative x axis
+    i = this.y;
+    j = this.x - 1;
+    isKingFound = false;
+
+    while (this.isInGridBounds([j, i])) {
+      if (isKingFound && grid[i][j].piece) {
+        break;
+      } else if (this.isKingOnPos(grid, [j, i])) {
+        isKingFound = true;
+        moves.push([j, i]);
+      } else if (grid[i][j].piece) {
+        moves.push([j, i]);
+        break;
+      } else {
+        moves.push([j, i]);
+      }
+
+      j--;
+    }
+
+    // negative x axis
+    i = this.y;
+    j = this.x + 1;
+    isKingFound = false;
+
+    while (this.isInGridBounds([j, i])) {
+      if (isKingFound && grid[i][j].piece) {
+        break;
+      } else if (this.isKingOnPos(grid, [j, i])) {
+        isKingFound = true;
+        moves.push([j, i]);
+      } else if (grid[i][j].piece) {
+        moves.push([j, i]);
+        break;
+      } else {
+        moves.push([j, i]);
+      }
+
+      j++;
+    }
+
+    return moves;
+  }
+
   axisMovement(grid) {
     const moves = [];
 
@@ -152,7 +358,11 @@ class ChessPiece {
     let i = this.y - 1;
     let j = this.x;
 
-    while (this.isInGridBounds([j, i]) && this.checkValidMove([j, i])) {
+    while (
+      this.isInGridBounds([j, i]) &&
+      this.checkValidMove([j, i]) &&
+      !this.isKingOnPos(grid, [j, i])
+    ) {
       moves.push([j, i]);
 
       // don't add other moves in this direction if there is an enemy piece
@@ -167,7 +377,11 @@ class ChessPiece {
     i = this.y + 1;
     j = this.x;
 
-    while (this.isInGridBounds([j, i]) && this.checkValidMove([j, i])) {
+    while (
+      this.isInGridBounds([j, i]) &&
+      this.checkValidMove([j, i]) &&
+      !this.isKingOnPos(grid, [j, i])
+    ) {
       moves.push([j, i]);
 
       // don't add other moves in this direction if there is an enemy piece
@@ -182,7 +396,11 @@ class ChessPiece {
     i = this.y;
     j = this.x - 1;
 
-    while (this.isInGridBounds([j, i]) && this.checkValidMove([j, i])) {
+    while (
+      this.isInGridBounds([j, i]) &&
+      this.checkValidMove([j, i]) &&
+      !this.isKingOnPos(grid, [j, i])
+    ) {
       moves.push([j, i]);
 
       // don't add other moves in this direction if there is an enemy piece
@@ -197,7 +415,11 @@ class ChessPiece {
     i = this.y;
     j = this.x + 1;
 
-    while (this.isInGridBounds([j, i]) && this.checkValidMove([j, i])) {
+    while (
+      this.isInGridBounds([j, i]) &&
+      this.checkValidMove([j, i]) &&
+      !this.isKingOnPos(grid, [j, i])
+    ) {
       moves.push([j, i]);
 
       // don't add other moves in this direction if there is an enemy piece
@@ -216,7 +438,10 @@ class ChessPiece {
   // (see level 6)
   isKingOnPos(grid, pos) {
     let isValid = false;
-    if (grid[pos[1]][pos[0]].piece instanceof King) {
+    if (
+      grid[pos[1]][pos[0]].piece &&
+      grid[pos[1]][pos[0]].piece instanceof King
+    ) {
       isValid = true;
     }
 

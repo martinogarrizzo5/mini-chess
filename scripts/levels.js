@@ -12,7 +12,7 @@ to create a level modify in the function the following properties:
 
 // level 1
 function level1() {
-  remainingMoves = 10;
+  remainingMoves = 3;
   remainingMovesEl.innerHTML = "Remaining Moves: " + remainingMoves;
 
   // black pieces
@@ -93,7 +93,7 @@ function level3() {
 
 // level 4
 function level4() {
-  remainingMoves = 4;
+  remainingMoves = 3;
   remainingMovesEl.innerHTML = "Remaining Moves: " + remainingMoves;
 
   // black pieces
@@ -127,39 +127,32 @@ function level4() {
 
 // level 5
 function level5() {
-  remainingMoves = 3;
+  remainingMoves = 5;
   remainingMovesEl.innerHTML = "Remaining Moves: " + remainingMoves;
 
   // black pieces
-  blackKing = new King(2, 7, "black");
+  blackKing = new King(0, 0, "black");
 
-  let pawn1 = new Pawn(3, 7, "black");
-  let pawn2 = new Pawn(3, 6, "black");
-  let pawn3 = new Pawn(3, 5, "black");
+  let pawn1 = new Pawn(1, 1, "black");
+  let pawn2 = new Pawn(1, 1, "black");
+  let rook2 = new Rook(0, 1, "black");
 
-  let pawn4 = new Pawn(2, 3, "black");
-  let pawn5 = new Pawn(3, 2, "black");
-  let pawn6 = new Pawn(3, 5, "black");
-
-  grid[2][7].changePiece(blackKing);
-  grid[3][7].changePiece(pawn1);
-  grid[3][6].changePiece(pawn2);
-  grid[3][5].changePiece(pawn3);
-  grid[2][3].changePiece(pawn4);
-  grid[3][2].changePiece(pawn5);
-  grid[3][5].changePiece(pawn6);
+  grid[0][0].changePiece(blackKing);
+  grid[0][1].changePiece(rook2);
+  grid[1][0].changePiece(pawn1);
+  grid[1][1].changePiece(pawn2);
 
   // white pieces
   let rook1 = new Rook(4, 5, "white");
-  let rook2 = new Rook(6, 1, "white");
+  let knight1 = new Knight(6, 3, "white");
 
-  alleyPieces.push(rook1, rook2);
+  alleyPieces.push(rook1, knight1);
 
   grid[4][5].changePiece(rook1);
-  grid[6][1].changePiece(rook2);
+  grid[6][3].changePiece(knight1);
 }
 
-// level 5
+// level 6
 function level6() {
   remainingMoves = 3;
   remainingMovesEl.innerHTML = "Remaining Moves: " + remainingMoves;
@@ -167,7 +160,7 @@ function level6() {
   // black pieces
   blackKing = new King(0, 1, "black");
 
-  let pawn1 = new Pawn(3, 7, "black");
+  let pawn1 = new Pawn(4, 2, "black");
   let pawn2 = new Pawn(3, 6, "black");
   let pawn3 = new Pawn(3, 5, "black");
 
@@ -176,7 +169,7 @@ function level6() {
   let pawn6 = new Pawn(3, 5, "black");
 
   grid[0][1].changePiece(blackKing);
-  grid[3][7].changePiece(pawn1);
+  grid[4][2].changePiece(pawn1);
   grid[3][6].changePiece(pawn2);
   grid[3][5].changePiece(pawn3);
   grid[2][3].changePiece(pawn4);
@@ -184,13 +177,13 @@ function level6() {
   grid[3][5].changePiece(pawn6);
 
   // white pieces
-  let bishop1 = new Bishop(5, 5, "white");
+  let bishop1 = new Bishop(7, 3, "white");
   let rook2 = new Rook(6, 1, "white");
   let rook1 = new Rook(4, 4, "white");
 
-  alleyPieces.push(rook1, rook2);
+  alleyPieces.push(rook1, rook2, bishop1);
 
   grid[4][4].changePiece(rook1);
   grid[6][1].changePiece(rook2);
-  grid[5][5].changePiece(bishop1);
+  grid[7][3].changePiece(bishop1);
 }
