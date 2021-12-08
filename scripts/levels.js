@@ -9,181 +9,157 @@ to create a level modify in the function the following properties:
   - put reference of all pieces on the grid 
   - put reference of white pieces in alleyPieces 
 */
+function putPieces(...pieces) {
+  for (let piece of pieces) {
+    grid[piece.y][piece.x].changePiece(piece);
+
+    if (piece.color === "white") {
+      alleyPieces.push(piece);
+    }
+  }
+}
+
+function setMovesNumber(movesNumber) {
+  remainingMoves = movesNumber;
+  remainingMovesEl.innerHTML = "Remaining Moves: " + movesNumber;
+}
 
 // level 1
 function level1() {
-  remainingMoves = 3;
-  remainingMovesEl.innerHTML = "Remaining Moves: " + remainingMoves;
+  setMovesNumber(3);
 
   // black pieces
   blackKing = new King(0, 0, "black");
 
-  let pawn1 = new Pawn(1, 1, "black");
-  let pawn2 = new Pawn(1, 1, "black");
-  let pawn3 = new Pawn(1, 2, "black");
-
-  grid[0][0].changePiece(blackKing);
-  grid[1][0].changePiece(pawn1);
-  grid[1][1].changePiece(pawn2);
-  grid[1][2].changePiece(pawn3);
+  putPieces(
+    blackKing,
+    new Pawn(1, 0, "black"),
+    new Pawn(1, 1, "black"),
+    new Pawn(1, 2, "black")
+  );
 
   // white pieces
-  let queen = new Queen(4, 5, "white");
-  let knight1 = new Knight(6, 3, "white");
-
-  alleyPieces.push(queen, knight1);
-
-  grid[4][5].changePiece(queen);
-  grid[6][3].changePiece(knight1);
+  putPieces(new Queen(4, 5, "white"), new Knight(6, 3, "white"));
 }
 
 // level 2
 function level2() {
-  remainingMoves = 1;
-  remainingMovesEl.innerHTML = "Remaining Moves: " + remainingMoves;
+  setMovesNumber(1);
 
   // black pieces
   blackKing = new King(0, 7, "black");
 
-  let pawn1 = new Pawn(1, 7, "black");
-  let pawn2 = new Pawn(1, 6, "black");
-  let pawn3 = new Pawn(1, 5, "black");
-
-  grid[0][7].changePiece(blackKing);
-  grid[1][7].changePiece(pawn1);
-  grid[1][6].changePiece(pawn2);
-  grid[1][5].changePiece(pawn3);
+  putPieces(
+    blackKing,
+    new Pawn(1, 7, "black"),
+    new Pawn(1, 6, "black"),
+    new Pawn(1, 5, "black")
+  );
 
   // white pieces
-  let queen = new Queen(4, 5, "white");
-  let knight1 = new Knight(6, 3, "white");
-
-  alleyPieces.push(queen, knight1);
-
-  grid[4][5].changePiece(queen);
-  grid[6][3].changePiece(knight1);
+  putPieces(new Queen(4, 5, "white"), new Knight(6, 3, "white"));
 }
 
 // level 3
 function level3() {
-  remainingMoves = 2;
-  remainingMovesEl.innerHTML = "Remaining Moves: " + remainingMoves;
+  setMovesNumber(2);
 
   // black pieces
   blackKing = new King(0, 7, "black");
 
-  let pawn1 = new Pawn(1, 7, "black");
-  let pawn2 = new Pawn(1, 6, "black");
-  let pawn3 = new Pawn(1, 5, "black");
-
-  grid[0][7].changePiece(blackKing);
-  grid[1][7].changePiece(pawn1);
-  grid[1][6].changePiece(pawn2);
-  grid[1][5].changePiece(pawn3);
+  putPieces(
+    blackKing,
+    new Pawn(1, 7, "black"),
+    new Pawn(1, 6, "black"),
+    new Pawn(1, 5, "black")
+  );
 
   // white pieces
-  let rook = new Rook(4, 5, "white");
-  let knight1 = new Knight(6, 3, "white");
-
-  alleyPieces.push(rook, knight1);
-
-  grid[4][5].changePiece(rook);
-  grid[6][3].changePiece(knight1);
+  putPieces(new Rook(4, 5, "white"), new Knight(6, 3, "white"));
 }
 
 // level 4
 function level4() {
-  remainingMoves = 3;
-  remainingMovesEl.innerHTML = "Remaining Moves: " + remainingMoves;
+  setMovesNumber(3);
 
   // black pieces
   blackKing = new King(2, 7, "black");
 
-  let pawn1 = new Pawn(3, 7, "black");
-  let pawn2 = new Pawn(3, 6, "black");
-  let pawn3 = new Pawn(3, 5, "black");
-
-  let pawn4 = new Pawn(2, 3, "black");
-  let pawn5 = new Pawn(3, 2, "black");
-  let pawn6 = new Pawn(3, 5, "black");
-
-  grid[2][7].changePiece(blackKing);
-  grid[3][7].changePiece(pawn1);
-  grid[3][6].changePiece(pawn2);
-  grid[3][5].changePiece(pawn3);
-  grid[2][3].changePiece(pawn4);
-  grid[3][2].changePiece(pawn5);
-  grid[3][5].changePiece(pawn6);
+  putPieces(
+    blackKing,
+    new Pawn(3, 7, "black"),
+    new Pawn(3, 6, "black"),
+    new Pawn(3, 5, "black"),
+    new Pawn(2, 3, "black"),
+    new Pawn(3, 2, "black"),
+    new Pawn(3, 5, "black")
+  );
 
   // white pieces
-  let rook1 = new Rook(4, 5, "white");
-  let rook2 = new Rook(6, 1, "white");
-
-  alleyPieces.push(rook1, rook2);
-
-  grid[4][5].changePiece(rook1);
-  grid[6][1].changePiece(rook2);
+  putPieces(new Rook(4, 5, "white"), new Rook(6, 1, "white"));
 }
 
 // level 5
 function level5() {
-  remainingMoves = 5;
-  remainingMovesEl.innerHTML = "Remaining Moves: " + remainingMoves;
+  setMovesNumber(5);
 
   // black pieces
   blackKing = new King(0, 0, "black");
 
-  let pawn1 = new Pawn(1, 1, "black");
-  let pawn2 = new Pawn(1, 1, "black");
-  let rook2 = new Rook(0, 1, "black");
-
-  grid[0][0].changePiece(blackKing);
-  grid[0][1].changePiece(rook2);
-  grid[1][0].changePiece(pawn1);
-  grid[1][1].changePiece(pawn2);
+  putPieces(
+    blackKing,
+    new Pawn(1, 1, "black"),
+    new Pawn(1, 0, "black"),
+    new Rook(0, 1, "black")
+  );
 
   // white pieces
-  let rook1 = new Rook(4, 5, "white");
-  let knight1 = new Knight(6, 3, "white");
-
-  alleyPieces.push(rook1, knight1);
-
-  grid[4][5].changePiece(rook1);
-  grid[6][3].changePiece(knight1);
+  putPieces(new Rook(4, 5, "white"), new Knight(6, 3, "white"));
 }
 
 // level 6
 function level6() {
-  remainingMoves = 2;
-  remainingMovesEl.innerHTML = "Remaining Moves: " + remainingMoves;
+  setMovesNumber(2);
 
   // black pieces
   blackKing = new King(0, 1, "black");
 
-  let pawn1 = new Pawn(4, 2, "black");
-  let pawn2 = new Pawn(3, 6, "black");
-  let pawn3 = new Pawn(3, 5, "black");
-
-  let pawn4 = new Pawn(2, 3, "black");
-  let pawn5 = new Pawn(3, 2, "black");
-  let pawn6 = new Pawn(3, 5, "black");
-
-  grid[0][1].changePiece(blackKing);
-  grid[4][2].changePiece(pawn1);
-  grid[3][6].changePiece(pawn2);
-  grid[3][5].changePiece(pawn3);
-  grid[2][3].changePiece(pawn4);
-  grid[3][2].changePiece(pawn5);
-  grid[3][5].changePiece(pawn6);
+  putPieces(
+    blackKing,
+    new Pawn(4, 2, "black"),
+    new Pawn(3, 6, "black"),
+    new Pawn(3, 5, "black"),
+    new Pawn(2, 3, "black"),
+    new Pawn(3, 2, "black"),
+    new Pawn(3, 5, "black")
+  );
 
   // white pieces
-  let bishop1 = new Bishop(5, 5, "white");
-  let rook2 = new Rook(6, 1, "white");
-  let rook1 = new Rook(4, 4, "white");
+  putPieces(
+    new Bishop(5, 5, "white"),
+    new Rook(6, 1, "white"),
+    new Rook(4, 4, "white")
+  );
+}
 
-  alleyPieces.push(rook1, rook2, bishop1);
+// level 7
+function level7() {
+  setMovesNumber(3);
 
-  grid[4][4].changePiece(rook1);
-  grid[6][1].changePiece(rook2);
-  grid[5][5].changePiece(bishop1);
+  // black pieces
+  blackKing = new King(2, 4, "black");
+
+  putPieces(
+    blackKing,
+    new Pawn(1, 4, "black"),
+    new Pawn(4, 2, "black"),
+    new Pawn(1, 3, "black"),
+    new Pawn(3, 5, "black"),
+    new Pawn(2, 3, "black"),
+    new Pawn(3, 2, "black"),
+    new Pawn(2, 5, "black")
+  );
+
+  // white pieces
+  putPieces(new Bishop(5, 5, "white"), new Bishop(7, 2, "white"));
 }

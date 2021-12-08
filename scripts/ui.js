@@ -17,6 +17,7 @@ function handleCellClick(event) {
   lastSelectedCell = selectedCell;
   // update js selected cell
   selectedCell = grid[event.target.y][event.target.x];
+  console.log(event.target.y, event.target.x);
 
   // handle same cell click
   if (lastSelectedCell === selectedCell) {

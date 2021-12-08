@@ -31,6 +31,7 @@ class King extends ChessPiece {
     }
 
     console.log(kingPositions);
+    // TODO: control if enemy can be eaten by any alley pieces
     for (let enemy of enemyPieces) {
       // TODO: solve bug with movement on diagonals and axis
       const moves = enemy.possibleMoves(grid);
