@@ -154,7 +154,7 @@ function level5() {
 
 // level 6
 function level6() {
-  remainingMoves = 3;
+  remainingMoves = 2;
   remainingMovesEl.innerHTML = "Remaining Moves: " + remainingMoves;
 
   // black pieces
@@ -177,7 +177,7 @@ function level6() {
   grid[3][5].changePiece(pawn6);
 
   // white pieces
-  let bishop1 = new Bishop(7, 3, "white");
+  let bishop1 = new Bishop(5, 5, "white");
   let rook2 = new Rook(6, 1, "white");
   let rook1 = new Rook(4, 4, "white");
 
@@ -185,5 +185,5 @@ function level6() {
 
   grid[4][4].changePiece(rook1);
   grid[6][1].changePiece(rook2);
-  grid[7][3].changePiece(bishop1);
+  grid[5][5].changePiece(bishop1);
 }
