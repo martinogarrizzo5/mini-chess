@@ -101,7 +101,7 @@ function level4() {
 
 // level 5
 function level5() {
-  setMovesNumber(5);
+  setMovesNumber(2);
 
   // black pieces
   blackKing = new King(0, 0, "black");
