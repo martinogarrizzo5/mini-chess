@@ -1,20 +1,13 @@
 // N.B! x and y cords are reversed
 
-/* 
-to create a level modify in the function the following properties:
-  - remainining moves
-  - html node of remaining moves
-  - black pieces
-  - white pieces
-  - put reference of all pieces on the grid 
-  - put reference of white pieces in alleyPieces 
-*/
 function putPieces(...pieces) {
   for (let piece of pieces) {
     grid[piece.y][piece.x].changePiece(piece);
 
     if (piece.color === "white") {
       alleyPieces.push(piece);
+    } else {
+      enemyPieces.push(piece);
     }
   }
 }
@@ -101,7 +94,7 @@ function level4() {
 
 // level 5
 function level5() {
-  setMovesNumber(2);
+  setMovesNumber(3);
 
   // black pieces
   blackKing = new King(0, 0, "black");
@@ -119,7 +112,7 @@ function level5() {
 
 // level 6
 function level6() {
-  setMovesNumber(2);
+  setMovesNumber(19);
 
   // black pieces
   blackKing = new King(0, 1, "black");

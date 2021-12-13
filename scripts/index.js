@@ -3,7 +3,7 @@ const gridEl = document.querySelector(".chess-grid");
 const remainingMovesEl = document.querySelector(".remaining-moves");
 const levelEl = document.querySelector(".level");
 
-let level = 1;
+let level = 6;
 let isLevelWon = false;
 let isLevelLost = false;
 let remainingMoves = 0; // remaining moves to checkmate enemy king
@@ -13,6 +13,7 @@ let selectedCell = null; // actual selected cell
 
 let blackKing; // enemy king
 let alleyPieces = [];
+let enemyPieces = [];
 
 createGrid();
 loadDOMGrid();

@@ -53,6 +53,7 @@ function resetGrid() {
   gridEl.innerHTML = "";
   blackKing = null;
   alleyPieces = [];
+  enemyPieces = [];
   createGrid();
   loadDOMGrid();
 }

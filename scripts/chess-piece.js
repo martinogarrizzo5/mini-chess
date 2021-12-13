@@ -1,4 +1,5 @@
 class ChessPiece {
+  id;
   x;
   y;
   img;
@@ -11,6 +12,7 @@ class ChessPiece {
     this.x = x;
     this.y = y;
     this.color = color;
+    this.id = Math.random() + "-" + Math.random();
   }
 
   // mark the cells where the piece can move

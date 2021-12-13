@@ -13,6 +13,7 @@ function consumeMove() {
 
 // UI interaction
 function handleCellClick(event) {
+  console.log(enemyPieces);
   // update last selected cell
   lastSelectedCell = selectedCell;
   // update js selected cell
@@ -50,6 +51,13 @@ function handleCellClick(event) {
       consumeMove();
       // clean last selected cell
       lastSelectedCell.clearCell(grid);
+
+      // remove enemy piece from enemy pieces if it was on the selectedCell
+      if (selectedCell.piece) {
+        enemyPieces = enemyPieces.filter(
+          (piece) => piece.id !== selectedCell.piece.id
+        );
+      }
       // move on new selected cell
       selectedCell.changePiece(lastSelectedCell.piece);
       lastSelectedCell.changePiece(null);
@@ -86,7 +94,7 @@ function handleCellClick(event) {
   }
 
   // show dialog to go to the next level if the player win
-  isLevelWon = blackKing.computeCheckMate(alleyPieces);
+  isLevelWon = blackKing.computeCheckMate(alleyPieces, enemyPieces);
   if (isLevelWon) {
     console.log("Level Won" + isLevelWon);
     showLevelWonDialog();
