@@ -112,7 +112,7 @@ function level5() {
 
 // level 6
 function level6() {
-  setMovesNumber(19);
+  setMovesNumber(2);
 
   // black pieces
   blackKing = new King(0, 1, "black");
@@ -123,8 +123,7 @@ function level6() {
     new Pawn(3, 6, "black"),
     new Pawn(3, 5, "black"),
     new Pawn(2, 3, "black"),
-    new Pawn(3, 2, "black"),
-    new Pawn(3, 5, "black")
+    new Pawn(3, 2, "black")
   );
 
   // white pieces

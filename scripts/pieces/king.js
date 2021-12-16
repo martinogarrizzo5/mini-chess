@@ -31,20 +31,22 @@ class King extends ChessPiece {
       }
     }
 
-    // TODO: fix king eat when white piece is covered by another one
     for (let enemy of enemyPieces) {
       // check if enemy is eatable
       let isEnemyEatable = false;
       let i = 0;
       while (i < alleyPieces.length && !isEnemyEatable) {
-        const moves = alleyPieces[i].possibleMoves(grid);
-        let j = 0;
-        while (j < moves.length && !isEnemyEatable) {
-          if (moves[j][1] === enemy.y && moves[j][0] === enemy.x) {
-            isEnemyEatable = true;
-            console.log("enemy eatable");
+        // don't calculate this on king pieces
+        if (!(alleyPieces[i] instanceof King)) {
+          const moves = alleyPieces[i].possibleMoves(grid);
+          let j = 0;
+          while (j < moves.length && !isEnemyEatable) {
+            if (moves[j][1] === enemy.y && moves[j][0] === enemy.x) {
+              isEnemyEatable = true;
+              console.log("[+] enemy eatable");
+            }
+            j++;
           }
-          j++;
         }
         i++;
       }
@@ -67,6 +69,7 @@ class King extends ChessPiece {
       }
     }
 
+    console.log("King can move on: ");
     console.log(kingPositions);
     return kingPositions.length === 0;
   }

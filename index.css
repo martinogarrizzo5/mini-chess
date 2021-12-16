@@ -161,6 +161,11 @@ td {
   margin: auto 0 1rem 0;
 }
 
+.intro-img {
+  height: 20rem;
+  margin: 2rem 0;
+}
+
 /* 700px */
 @media (max-width: 43.75em) {
   td {

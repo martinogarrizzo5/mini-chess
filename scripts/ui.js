@@ -139,9 +139,7 @@ function showDefeatDialog() {
 }
 
 function showGameWonDialog() {
-  const backdrop = document.createElement("div");
-  backdrop.classList.add("backdrop");
-
+  addBackdrop();
   const dialog = document.createElement("div");
   dialog.classList.add("dialog");
   dialog.innerHTML = `
@@ -152,7 +150,16 @@ function showGameWonDialog() {
 
   const body = document.querySelector("body");
   body.appendChild(dialog);
-  body.appendChild(backdrop);
+}
+
+// start for the first time the game
+function startGame() {
+  removeDialog();
+  createGrid();
+  loadDOMGrid();
+  console.log(grid);
+
+  levels[level - 1]();
 }
 
 // reset the game to initial point
@@ -194,4 +201,28 @@ function removeDialog() {
   const body = document.querySelector("body");
   body.querySelector(".dialog").remove();
   body.querySelector(".backdrop").remove();
+}
+
+// add introductory screen to explain the user the goal of the game
+function showIntroScreen() {
+  const body = document.querySelector("body");
+  const dialog = document.createElement("div");
+  dialog.classList.add("dialog");
+
+  dialog.innerHTML = `
+    <h2 class="finish-result">Hey There!</h2>
+    <img src="./images/intro.png" alt="intro" class="intro-img">
+    <p class="finish-description">Your goal is to checkmate the black king</p>
+    <button class="finish-button" onclick="startGame()">Start Game<button>
+  `;
+
+  body.appendChild(dialog);
+  addBackdrop();
+}
+
+function addBackdrop() {
+  const body = document.querySelector("body");
+  const backdrop = document.createElement("div");
+  backdrop.classList.add("backdrop");
+  body.appendChild(backdrop);
 }
